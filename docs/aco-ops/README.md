@@ -10,9 +10,9 @@ Operational analysis framework for **Antuit CloudOps** and **Antuit DBA** scrum 
 | Data collection scripts | Complete |
 | KEDB structure + seed entries | Complete (templates — validate against live data) |
 | Runbooks | Complete (templates — validate against live data) |
-| Live Jira/Datadog analysis | **Blocked** — awaiting API credentials |
+| Live Jira/Datadog analysis | **Blocked** — Jira MCP is on your PC, not this Cloud Agent VM |
 
-Once `JIRA_*` and `DD_*` secrets are configured in the Cloud Agent environment, run the pipeline below to populate real metrics and refine KEDB/runbook entries.
+See **[LOCAL-DATA-ACCESS.md](LOCAL-DATA-ACCESS.md)** for how to bridge access from your PC.
 
 ## Quick Start
 
