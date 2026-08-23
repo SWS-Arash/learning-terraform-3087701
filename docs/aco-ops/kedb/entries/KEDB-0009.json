@@ -1,0 +1,33 @@
+{
+  "id": "KEDB-0009",
+  "title": "ArgoCD sync failure after Helm upgrade",
+  "category": "DEPLOYMENT",
+  "teams": [
+    "Antuit CloudOps"
+  ],
+  "symptoms": [
+    "ArgoCD Application status Degraded or Unknown",
+    "Sync error: resource validation failed, CRD not found, immutable field change",
+    "Helm release in failed state",
+    "Pods not updated after Git push"
+  ],
+  "root_cause": "Helm chart breaking change; CRD upgrade ordering issue; immutable field modified (Service clusterIP, PVC size); resource conflict with manual kubectl changes",
+  "workaround": "argocd app sync <app> --force (with approval); helm rollback <release> <revision>; delete conflicting resource if safe",
+  "permanent_fix": "Pin Helm chart versions; test upgrades in staging; use sync waves for CRD-before-workload ordering; enforce GitOps-only changes (deny manual kubectl in prod)",
+  "runbook_ref": "runbooks/rb-kedb-0009.md",
+  "runbook_type": "automated",
+  "auto_healing": {
+    "mechanism": "ArgoCD automated sync with self-heal; rollback on failed health check via Argo Rollouts or sync hook",
+    "tool": "ArgoCD + Argo Rollouts",
+    "status": "planned"
+  },
+  "related_jira": [],
+  "related_monitors": [
+    "ArgoCD app sync failed"
+  ],
+  "frequency": "Validate after data pull",
+  "status": "template",
+  "owner": "CloudOps Platform",
+  "last_reviewed": "2026-08-23",
+  "notes": "Document sync wave ordering for all platform charts"
+}

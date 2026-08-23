@@ -1,0 +1,32 @@
+{
+  "id": "KEDB-0002",
+  "title": "TLS certificate expiry causing ingress failures",
+  "category": "SECRET_MGMT",
+  "teams": [
+    "Antuit CloudOps"
+  ],
+  "symptoms": [
+    "Browser/clients report ERR_CERT_DATE_INVALID or SSL handshake failures",
+    "Ingress returns 502/503 with TLS errors in controller logs",
+    "Datadog synthetic test failures on HTTPS endpoints"
+  ],
+  "root_cause": "Certificate not managed by cert-manager; manual renewal missed or cert-manager ClusterIssuer misconfigured",
+  "workaround": "Manually renew cert via cert-manager Certificate resource or import renewed cert to ACM/secret; restart ingress controller if needed",
+  "permanent_fix": "Migrate all ingress TLS to cert-manager with automated Let's Encrypt or internal CA; add 30/14/7-day pre-expiry Datadog monitors on cert expiry metrics",
+  "runbook_ref": "runbooks/rb-kedb-0002.md",
+  "runbook_type": "automated",
+  "auto_healing": {
+    "mechanism": "cert-manager auto-renews at 2/3 lifetime; ESO syncs renewed secret to ingress",
+    "tool": "cert-manager + External Secrets Operator",
+    "status": "planned"
+  },
+  "related_jira": [],
+  "related_monitors": [
+    "Certificate expiry < 14 days"
+  ],
+  "frequency": "Validate after data pull",
+  "status": "template",
+  "owner": "CloudOps Platform",
+  "last_reviewed": "2026-08-23",
+  "notes": "Inventory all non-cert-manager TLS certs during remediation Phase 1"
+}

@@ -1,0 +1,13 @@
+{
+  "from_ts": 1735689600,
+  "to_ts": 1755993600,
+  "count": 6,
+  "events": [
+    {"title": "[Alert] CPU utilization > 80% on kubernetes pods", "date_happened": 1738368000, "tags": ["team:cloudops", "monitor"]},
+    {"title": "[Alert] CPU utilization > 80% on kubernetes pods", "date_happened": 1738454400, "tags": ["team:cloudops", "monitor"]},
+    {"title": "[Alert] CPU utilization > 80% on kubernetes pods", "date_happened": 1738540800, "tags": ["team:cloudops", "monitor"]},
+    {"title": "[Alert] CPU utilization > 80% on kubernetes pods", "date_happened": 1738627200, "tags": ["team:cloudops", "monitor"]},
+    {"title": "[Alert] Database connections > 80%", "date_happened": 1741219200, "tags": ["team:dba", "monitor"]},
+    {"title": "[Alert] Database connections > 80%", "date_happened": 1741305600, "tags": ["team:dba", "monitor"]}
+  ]
+}

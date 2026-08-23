@@ -1,0 +1,10 @@
+# Ignore collected live data (may contain sensitive ticket details)
+data/jira/jira_issues_*.csv
+data/jira/jira_issues_*.json
+data/datadog/monitors_*.json
+data/datadog/monitors_*.csv
+data/datadog/alert_events_*.json
+!data/jira/sample/
+!data/datadog/sample/
+__pycache__/
+*.pyc

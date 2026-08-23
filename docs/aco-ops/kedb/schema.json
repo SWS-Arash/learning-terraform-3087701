@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACO Known Error Database Entry",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "category",
+    "teams",
+    "symptoms",
+    "root_cause",
+    "workaround",
+    "permanent_fix",
+    "runbook_ref",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^KEDB-[0-9]{4}$",
+      "description": "Unique identifier, e.g. KEDB-0001"
+    },
+    "title": { "type": "string" },
+    "category": {
+      "type": "string",
+      "enum": [
+        "MONITOR_NOISE",
+        "SECRET_MGMT",
+        "K8S_CAPACITY",
+        "ACCESS_IAM",
+        "SECURITY_VULN",
+        "DBA_PERF",
+        "NETWORK_DNS",
+        "DEPLOYMENT"
+      ]
+    },
+    "teams": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["Antuit CloudOps", "Antuit DBA"] }
+    },
+    "symptoms": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Observable signs when this error occurs"
+    },
+    "root_cause": { "type": "string" },
+    "workaround": {
+      "type": "string",
+      "description": "Temporary fix to restore service"
+    },
+    "permanent_fix": { "type": "string" },
+    "runbook_ref": {
+      "type": "string",
+      "description": "Path to runbook, e.g. runbooks/rb-kedb-0001.md"
+    },
+    "runbook_type": {
+      "type": "string",
+      "enum": ["manual", "automated", "hybrid"]
+    },
+    "auto_healing": {
+      "type": "object",
+      "properties": {
+        "mechanism": { "type": "string" },
+        "tool": { "type": "string" },
+        "status": { "type": "string", "enum": ["planned", "implemented", "not_applicable"] }
+      }
+    },
+    "related_jira": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "related_monitors": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "frequency": {
+      "type": "string",
+      "description": "Observed frequency, e.g. '3x/month'"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "mitigated", "resolved", "template"]
+    },
+    "owner": { "type": "string" },
+    "last_reviewed": { "type": "string", "format": "date" },
+    "notes": { "type": "string" }
+  }
+}

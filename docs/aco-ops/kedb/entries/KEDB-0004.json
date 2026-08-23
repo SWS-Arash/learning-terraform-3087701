@@ -1,0 +1,33 @@
+{
+  "id": "KEDB-0004",
+  "title": "ExternalSecret sync failure after AWS Secrets Manager rotation",
+  "category": "SECRET_MGMT",
+  "teams": [
+    "Antuit CloudOps"
+  ],
+  "symptoms": [
+    "ExternalSecret status SecretSyncedError",
+    "Pods fail to start with CreateContainerConfigError",
+    "Application auth failures after scheduled secret rotation",
+    "ESO controller logs show AccessDenied or secret version mismatch"
+  ],
+  "root_cause": "ESO refresh interval longer than rotation frequency; IAM role missing secretsmanager:GetSecretValue on new version; app caches old credential",
+  "workaround": "Force ESO refresh: kubectl annotate externalsecret <name> force-sync=$(date +%s); restart affected deployments",
+  "permanent_fix": "Set ESO refreshInterval \u2264 rotation period/2; use IRSA with least-privilege policy; implement app-side credential reload; add Datadog monitor on ExternalSecret sync status",
+  "runbook_ref": "runbooks/rb-kedb-0004.md",
+  "runbook_type": "automated",
+  "auto_healing": {
+    "mechanism": "ESO automatic refresh + Reloader sidecar/inject triggers pod restart on secret change",
+    "tool": "External Secrets Operator + Stakater Reloader",
+    "status": "planned"
+  },
+  "related_jira": [],
+  "related_monitors": [
+    "ExternalSecret sync error"
+  ],
+  "frequency": "Validate after data pull",
+  "status": "template",
+  "owner": "CloudOps Platform",
+  "last_reviewed": "2026-08-23",
+  "notes": "Audit all ExternalSecrets for refreshInterval vs Secrets Manager rotation schedule"
+}

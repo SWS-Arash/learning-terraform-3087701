@@ -1,0 +1,43 @@
+{
+  "jira": {
+    "total": 16,
+    "by_category": {
+      "ACCESS_IAM": 3,
+      "K8S_CAPACITY": 3,
+      "SECRET_MGMT": 3,
+      "DBA_PERF": 3,
+      "MONITOR_NOISE": 2,
+      "NETWORK_DNS": 1,
+      "DEPLOYMENT": 1,
+      "SECURITY_VULN": 1
+    },
+    "by_team": {
+      "Antuit CloudOps": 13,
+      "Antuit DBA": 3
+    },
+    "by_type": {
+      "Incident": 7,
+      "Service Request": 5,
+      "Bug": 4
+    },
+    "by_status": {
+      "Resolved": 9,
+      "Done": 5,
+      "Open": 2
+    },
+    "top_recurring": []
+  },
+  "datadog": {
+    "total_events": 6,
+    "total_monitors": 0,
+    "top_alerting_monitors": {
+      "[Alert] CPU utilization > 80% on kubernetes pods": 4,
+      "[Alert] Database connections > 80%": 2
+    },
+    "by_tag": {
+      "team:cloudops": 4,
+      "team:dba": 2
+    }
+  },
+  "generated_at": "20260823T211209Z"
+}

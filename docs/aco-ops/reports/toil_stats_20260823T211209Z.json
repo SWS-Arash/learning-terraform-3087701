@@ -1,0 +1,109 @@
+{
+  "total_tickets": 16,
+  "toil_tickets": 10,
+  "toil_pct": 62.5,
+  "by_category": {
+    "ACCESS_GRANT": 3,
+    "SECRET_ROTATE": 3,
+    "MONITOR_TUNING": 2,
+    "DEPLOY_RERUN": 1,
+    "CAPACITY_SCALE": 1
+  },
+  "by_team": {
+    "Antuit CloudOps": 13,
+    "Antuit DBA": 3
+  },
+  "recurring_patterns": [],
+  "toil_tickets_sample": [
+    {
+      "key": "ACO-1001",
+      "summary": "Grant VPN access for new contractor",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "ACCESS_GRANT"
+      ],
+      "status": "Done"
+    },
+    {
+      "key": "ACO-1002",
+      "summary": "Grant RBAC access to production namespace",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "ACCESS_GRANT"
+      ],
+      "status": "Done"
+    },
+    {
+      "key": "ACO-1004",
+      "summary": "Datadog CPU alert false positive on idle pods",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "MONITOR_TUNING"
+      ],
+      "status": "Resolved"
+    },
+    {
+      "key": "ACO-1005",
+      "summary": "TLS certificate expiry on ingress api.example.com",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "SECRET_ROTATE"
+      ],
+      "status": "Resolved"
+    },
+    {
+      "key": "ACO-1006",
+      "summary": "ExternalSecret sync failure after rotation",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "SECRET_ROTATE"
+      ],
+      "status": "Resolved"
+    },
+    {
+      "key": "ACO-1009",
+      "summary": "ArgoCD sync failure after helm upgrade",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "DEPLOY_RERUN"
+      ],
+      "status": "Open"
+    },
+    {
+      "key": "ACO-1011",
+      "summary": "Grant VPN access for vendor team",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "ACCESS_GRANT"
+      ],
+      "status": "Done"
+    },
+    {
+      "key": "ACO-1013",
+      "summary": "Increase memory limit for api-gateway pods",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "CAPACITY_SCALE"
+      ],
+      "status": "Done"
+    },
+    {
+      "key": "ACO-1014",
+      "summary": "Silence noisy Datadog monitor for staging",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "MONITOR_TUNING"
+      ],
+      "status": "Resolved"
+    },
+    {
+      "key": "ACO-1015",
+      "summary": "Restart pods after secret rotation manually",
+      "team": "Antuit CloudOps",
+      "categories": [
+        "SECRET_ROTATE"
+      ],
+      "status": "Done"
+    }
+  ]
+}
