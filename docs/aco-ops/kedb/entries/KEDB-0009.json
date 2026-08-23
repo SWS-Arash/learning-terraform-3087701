@@ -2,7 +2,9 @@
   "id": "KEDB-0009",
   "title": "ArgoCD sync failure after Helm upgrade",
   "category": "DEPLOYMENT",
-  "teams": ["Antuit CloudOps"],
+  "teams": [
+    "Antuit CloudOps"
+  ],
   "symptoms": [
     "ArgoCD Application status Degraded or Unknown",
     "Sync error: resource validation failed, CRD not found, immutable field change",
@@ -20,7 +22,9 @@
     "status": "planned"
   },
   "related_jira": [],
-  "related_monitors": ["ArgoCD app sync failed"],
+  "related_monitors": [
+    "ArgoCD app sync failed"
+  ],
   "frequency": "Validate after data pull",
   "status": "template",
   "owner": "CloudOps Platform",

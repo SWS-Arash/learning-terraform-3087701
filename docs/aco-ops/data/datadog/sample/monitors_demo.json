@@ -1,0 +1,37 @@
+{
+  "count": 4,
+  "monitors": [
+    {
+      "id": 10001,
+      "name": "CPU utilization > 80% on kubernetes pods",
+      "type": "metric alert",
+      "tags": ["team:cloudops", "env:prod"],
+      "overall_state": "Alert",
+      "query": "avg(last_1m):avg:kubernetes.cpu.usage.total{*} > 800000000"
+    },
+    {
+      "id": 10002,
+      "name": "Certificate expiry < 14 days",
+      "type": "metric alert",
+      "tags": ["team:cloudops", "env:prod"],
+      "overall_state": "OK",
+      "query": "min(last_1d):certmanager_certificate_expiration_timestamp{*} < 1209600"
+    },
+    {
+      "id": 10003,
+      "name": "Database connections > 80%",
+      "type": "metric alert",
+      "tags": ["team:dba", "env:prod"],
+      "overall_state": "Warn",
+      "query": "avg:aws.rds.database_connections{*} > 800"
+    },
+    {
+      "id": 10004,
+      "name": "Replication lag > 30s",
+      "type": "metric alert",
+      "tags": ["team:dba", "env:prod"],
+      "overall_state": "OK",
+      "query": "max:aws.rds.replica_lag{*} > 30"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "ACO Ops Analysis",
+  "install": "pip3 install -r docs/aco-ops/scripts/requirements.txt",
+  "terminals": []
+}

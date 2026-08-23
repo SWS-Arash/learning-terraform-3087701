@@ -2,7 +2,9 @@
   "id": "KEDB-0007",
   "title": "Replication lag on read replica",
   "category": "DBA_PERF",
-  "teams": ["Antuit DBA"],
+  "teams": [
+    "Antuit DBA"
+  ],
   "symptoms": [
     "Read replica lag > SLA threshold (e.g. 30s)",
     "Stale data reported by read-only API endpoints",
@@ -20,7 +22,9 @@
     "status": "planned"
   },
   "related_jira": [],
-  "related_monitors": ["Replication lag > 30s"],
+  "related_monitors": [
+    "Replication lag > 30s"
+  ],
   "frequency": "Validate after data pull",
   "status": "template",
   "owner": "Antuit DBA",

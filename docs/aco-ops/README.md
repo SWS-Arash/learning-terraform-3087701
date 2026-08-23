@@ -10,9 +10,9 @@ Operational analysis framework for **Antuit CloudOps** and **Antuit DBA** scrum 
 | Data collection scripts | Complete |
 | KEDB structure + seed entries | Complete (templates — validate against live data) |
 | Runbooks | Complete (templates — validate against live data) |
-| Live Jira/Datadog analysis | **Blocked** — Jira MCP is on your PC, not this Cloud Agent VM |
+| Live Jira/Datadog analysis | **Use PC** — secrets/MCP skipped in Cloud Agent |
 
-See **[LOCAL-DATA-ACCESS.md](LOCAL-DATA-ACCESS.md)** for how to bridge access from your PC.
+See **[SETUP-STATUS.md](SETUP-STATUS.md)** for environment setup completion details.
 
 ## Quick Start
 

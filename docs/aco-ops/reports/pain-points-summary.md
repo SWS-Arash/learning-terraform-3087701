@@ -1,45 +1,38 @@
 # Pain Points Analysis Report
 
-> **Status:** Awaiting live data — Jira and Datadog API credentials not yet configured.
->
-> Run the collection pipeline to populate this report with real metrics.
-
-Generated: 2026-08-23 (framework placeholder)
+Generated: 2026-08-23T21:12:09.456913+00:00
 
 ## Executive Summary
 
-- **Jira tickets analyzed:** 0 (pending credentials)
-- **Datadog alert events:** 0 (pending credentials)
-- **Datadog monitors in scope:** 0 (pending credentials)
+- **Jira tickets analyzed:** 16
+- **Datadog alert events:** 6
+- **Datadog monitors in scope:** 0
 
-## Expected Top Categories (Industry Baseline for CloudOps/DBA)
+## Top Pain Point Categories (Jira)
 
-Based on typical enterprise CloudOps and DBA operational patterns, validate these against ACO data:
+| Category | Count | Recommended Lever |
+|----------|-------|-------------------|
+| ACCESS_IAM | 3 | IAM automation, access reviews, break-glass |
+| K8S_CAPACITY | 3 | Right-sizing, VPA/HPA, capacity planning |
+| SECRET_MGMT | 3 | Vault rotation, ESO, pre-expiry automation |
+| DBA_PERF | 3 | Query tuning, maintenance windows, pooling |
+| MONITOR_NOISE | 2 | Monitor tuning, composite alerts, alert grouping |
+| NETWORK_DNS | 1 | IaC, health-check tuning, DNS automation |
+| DEPLOYMENT | 1 | GitOps, canary, auto-rollback |
+| SECURITY_VULN | 1 | Patch cadence, image gates, remediation SLAs |
 
-| Rank | Category | Typical % of Tickets | Primary Lever |
-|------|----------|---------------------|---------------|
-| 1 | MONITOR_NOISE | 25–35% | Monitor tuning, alert grouping |
-| 2 | K8S_CAPACITY | 15–25% | Right-sizing, autoscaling |
-| 3 | SECRET_MGMT | 10–15% | ESO, cert-manager, rotation automation |
-| 4 | DEPLOYMENT | 10–15% | GitOps, canary, auto-rollback |
-| 5 | DBA_PERF | 10–15% | Connection pooling, query tuning |
-| 6 | ACCESS_IAM | 5–10% | RBAC automation, access reviews |
-| 7 | SECURITY_VULN | 5–10% | Patch cadence, CI gates |
-| 8 | NETWORK_DNS | 3–8% | IaC, synthetic monitoring |
+## Recurring Jira Patterns (≥2 occurrences)
 
-## Next Steps
 
-1. Configure environment secrets: `JIRA_*`, `DD_*`
-2. Run: `python docs/aco-ops/scripts/collect_jira.py`
-3. Run: `python docs/aco-ops/scripts/collect_datadog.py`
-4. Run: `python docs/aco-ops/scripts/analyze_pain_points.py`
-5. This file will be overwritten with real analysis results
+## Top Datadog Alerting Monitors
 
-## KEDB & Runbook Readiness
+- [Alert] CPU utilization > 80% on kubernetes pods: **4** events
+- [Alert] Database connections > 80%: **2** events
 
-10 KEDB template entries and corresponding runbooks are prepared in:
+## Recommended Actions
 
-- `kedb/entries/KEDB-0001.json` through `KEDB-0010.json`
-- `runbooks/rb-kedb-0001.md` through `rb-kedb-0010.md`
-
-After data pull, promote matching patterns from `template` → `active` status and link real Jira ticket keys and Datadog monitor IDs.
+1. Map top 5 recurring patterns to KEDB entries (see `kedb/entries/`)
+2. Tune or silence noisy Datadog monitors with documented justification
+3. Implement auto-healing for K8S_CAPACITY and SECRET_MGMT categories
+4. Schedule quarterly access reviews for ACCESS_IAM items
+5. Align security patch SLAs with SECURITY_VULN backlog

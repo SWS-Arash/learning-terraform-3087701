@@ -2,7 +2,9 @@
   "id": "KEDB-0008",
   "title": "Critical CVE blocking deployment pipeline",
   "category": "SECURITY_VULN",
-  "teams": ["Antuit CloudOps"],
+  "teams": [
+    "Antuit CloudOps"
+  ],
   "symptoms": [
     "CI/CD pipeline fails at image scan stage",
     "Wiz/Prisma/Trivy reports critical CVE in base image or dependency",
@@ -20,7 +22,9 @@
     "status": "planned"
   },
   "related_jira": [],
-  "related_monitors": ["Critical CVE count > 0 in production"],
+  "related_monitors": [
+    "Critical CVE count > 0 in production"
+  ],
   "frequency": "Validate after data pull",
   "status": "template",
   "owner": "CloudOps Security",

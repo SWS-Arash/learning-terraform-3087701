@@ -2,7 +2,9 @@
   "id": "KEDB-0010",
   "title": "Node disk pressure causing pod evictions",
   "category": "K8S_CAPACITY",
-  "teams": ["Antuit CloudOps"],
+  "teams": [
+    "Antuit CloudOps"
+  ],
   "symptoms": [
     "Node condition DiskPressure=True",
     "Pods evicted with reason Evicted, message: The node was low on resource: ephemeral-storage",
@@ -20,7 +22,10 @@
     "status": "planned"
   },
   "related_jira": [],
-  "related_monitors": ["Node disk usage > 85%", "Pod evicted"],
+  "related_monitors": [
+    "Node disk usage > 85%",
+    "Pod evicted"
+  ],
   "frequency": "Validate after data pull",
   "status": "template",
   "owner": "CloudOps SRE",

@@ -2,7 +2,9 @@
   "id": "KEDB-0003",
   "title": "Pod OOMKilled due to undersized memory limits",
   "category": "K8S_CAPACITY",
-  "teams": ["Antuit CloudOps"],
+  "teams": [
+    "Antuit CloudOps"
+  ],
   "symptoms": [
     "Pod status OOMKilled with exit code 137",
     "Intermittent 502/503 from service during pod restarts",
@@ -20,7 +22,10 @@
     "status": "planned"
   },
   "related_jira": [],
-  "related_monitors": ["Pod OOMKilled", "Memory utilization > 90%"],
+  "related_monitors": [
+    "Pod OOMKilled",
+    "Memory utilization > 90%"
+  ],
   "frequency": "Validate after data pull",
   "status": "template",
   "owner": "CloudOps SRE",

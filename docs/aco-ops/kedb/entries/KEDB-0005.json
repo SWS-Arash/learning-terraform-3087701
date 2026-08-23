@@ -2,7 +2,9 @@
   "id": "KEDB-0005",
   "title": "RBAC permission denied for service account",
   "category": "ACCESS_IAM",
-  "teams": ["Antuit CloudOps"],
+  "teams": [
+    "Antuit CloudOps"
+  ],
   "symptoms": [
     "Kubernetes API returns 403 Forbidden",
     "Application logs: User system:serviceaccount:ns:sa cannot get/list/create resource",

@@ -2,7 +2,9 @@
   "id": "KEDB-0002",
   "title": "TLS certificate expiry causing ingress failures",
   "category": "SECRET_MGMT",
-  "teams": ["Antuit CloudOps"],
+  "teams": [
+    "Antuit CloudOps"
+  ],
   "symptoms": [
     "Browser/clients report ERR_CERT_DATE_INVALID or SSL handshake failures",
     "Ingress returns 502/503 with TLS errors in controller logs",
@@ -19,8 +21,10 @@
     "status": "planned"
   },
   "related_jira": [],
-  "related_monitors": ["Certificate expiry < 14 days"],
-  "frequency": "Validate after data pull — typically 1-2 incidents/quarter if manual certs exist",
+  "related_monitors": [
+    "Certificate expiry < 14 days"
+  ],
+  "frequency": "Validate after data pull",
   "status": "template",
   "owner": "CloudOps Platform",
   "last_reviewed": "2026-08-23",
