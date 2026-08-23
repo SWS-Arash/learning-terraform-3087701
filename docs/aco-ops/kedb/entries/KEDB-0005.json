@@ -1,0 +1,29 @@
+{
+  "id": "KEDB-0005",
+  "title": "RBAC permission denied for service account",
+  "category": "ACCESS_IAM",
+  "teams": ["Antuit CloudOps"],
+  "symptoms": [
+    "Kubernetes API returns 403 Forbidden",
+    "Application logs: User system:serviceaccount:ns:sa cannot get/list/create resource",
+    "CI/CD pipeline fails on kubectl apply",
+    "Cross-namespace access blocked"
+  ],
+  "root_cause": "Missing RoleBinding/ClusterRoleBinding; RBAC not managed in GitOps; service account renamed without updating bindings; OIDC group mapping stale",
+  "workaround": "Apply emergency RoleBinding from runbook template (time-limited, requires approval); verify with kubectl auth can-i",
+  "permanent_fix": "Manage all RBAC in GitOps repo with PR review; automate SA provisioning via Helm subchart; quarterly RBAC audit; map OIDC groups to ClusterRoles",
+  "runbook_ref": "runbooks/rb-kedb-0005.md",
+  "runbook_type": "manual",
+  "auto_healing": {
+    "mechanism": "ArgoCD auto-sync restores RBAC from Git; no auto-grant of new permissions",
+    "tool": "ArgoCD + Terraform IAM",
+    "status": "planned"
+  },
+  "related_jira": [],
+  "related_monitors": [],
+  "frequency": "Validate after data pull",
+  "status": "template",
+  "owner": "CloudOps Security",
+  "last_reviewed": "2026-08-23",
+  "notes": "Track emergency RBAC grants with 24h expiry and audit log"
+}

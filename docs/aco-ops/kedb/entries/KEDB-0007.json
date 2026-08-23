@@ -1,0 +1,29 @@
+{
+  "id": "KEDB-0007",
+  "title": "Replication lag on read replica",
+  "category": "DBA_PERF",
+  "teams": ["Antuit DBA"],
+  "symptoms": [
+    "Read replica lag > SLA threshold (e.g. 30s)",
+    "Stale data reported by read-only API endpoints",
+    "ReplicaIOPS or ReplicaLag CloudWatch/RDS metric elevated",
+    "Long-running write transactions blocking replication"
+  ],
+  "root_cause": "Heavy write load on primary; missing indexes causing large WAL; replica undersized; network latency; DDL lock on primary",
+  "workaround": "Route critical reads to primary temporarily; identify and terminate long-running transactions; scale up replica instance class",
+  "permanent_fix": "Right-size replica to match primary write throughput; optimize slow writes; use logical replication for specific tables if needed; set max_standby_streaming_delay appropriately",
+  "runbook_ref": "runbooks/rb-kedb-0007.md",
+  "runbook_type": "hybrid",
+  "auto_healing": {
+    "mechanism": "Auto-failover read traffic to primary via DNS/connection string when lag exceeds threshold; auto-scale replica IOPS",
+    "tool": "Route53 health check + RDS auto-scaling",
+    "status": "planned"
+  },
+  "related_jira": [],
+  "related_monitors": ["Replication lag > 30s"],
+  "frequency": "Validate after data pull",
+  "status": "template",
+  "owner": "Antuit DBA",
+  "last_reviewed": "2026-08-23",
+  "notes": "Define lag SLA per application tier (critical vs analytics)"
+}

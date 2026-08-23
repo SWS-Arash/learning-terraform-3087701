@@ -1,0 +1,4 @@
+# Ignore collected data (may contain sensitive ticket details)
+data/
+*.csv
+!scripts/config.example.env

@@ -1,0 +1,24 @@
+{
+  "id": "KEDB-TEMPLATE",
+  "title": "Template — replace with issue title",
+  "category": "MONITOR_NOISE",
+  "teams": ["Antuit CloudOps"],
+  "symptoms": ["Symptom 1", "Symptom 2"],
+  "root_cause": "Describe root cause",
+  "workaround": "Steps to restore service immediately",
+  "permanent_fix": "Long-term resolution",
+  "runbook_ref": "runbooks/rb-kedb-XXXX.md",
+  "runbook_type": "manual",
+  "auto_healing": {
+    "mechanism": "None",
+    "tool": "N/A",
+    "status": "not_applicable"
+  },
+  "related_jira": [],
+  "related_monitors": [],
+  "frequency": "TBD after data pull",
+  "status": "template",
+  "owner": "TBD",
+  "last_reviewed": "2026-08-23",
+  "notes": "Copy this file to create new KEDB entries"
+}

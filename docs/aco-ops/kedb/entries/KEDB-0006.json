@@ -1,0 +1,29 @@
+{
+  "id": "KEDB-0006",
+  "title": "Database connection pool exhaustion",
+  "category": "DBA_PERF",
+  "teams": ["Antuit DBA"],
+  "symptoms": [
+    "Application errors: too many connections, connection timed out",
+    "RDS/Cloud SQL max_connections reached",
+    "PgBouncer/RDS Proxy queue depth increasing",
+    "Latency spike correlating with connection count"
+  ],
+  "root_cause": "Connection leak in application; pool size misconfigured; missing connection pooling layer; long-running idle transactions",
+  "workaround": "Kill idle connections: SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE state='idle' AND query_start < now()-interval '10 min'; temporarily increase max_connections (with caution)",
+  "permanent_fix": "Deploy RDS Proxy or PgBouncer; set app pool max ≤ (DB max_connections / num_replicas) * 0.8; add connection leak detection; implement query timeout defaults",
+  "runbook_ref": "runbooks/rb-kedb-0006.md",
+  "runbook_type": "hybrid",
+  "auto_healing": {
+    "mechanism": "RDS Proxy auto-scales connection multiplexing; Datadog monitor triggers runbook webhook to kill idle sessions",
+    "tool": "RDS Proxy + custom Lambda/webhook",
+    "status": "planned"
+  },
+  "related_jira": [],
+  "related_monitors": ["Database connections > 80%", "Connection pool exhausted"],
+  "frequency": "Validate after data pull",
+  "status": "template",
+  "owner": "Antuit DBA",
+  "last_reviewed": "2026-08-23",
+  "notes": "Review per-application connection pool settings during capacity planning"
+}

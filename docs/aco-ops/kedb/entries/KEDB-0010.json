@@ -1,0 +1,29 @@
+{
+  "id": "KEDB-0010",
+  "title": "Node disk pressure causing pod evictions",
+  "category": "K8S_CAPACITY",
+  "teams": ["Antuit CloudOps"],
+  "symptoms": [
+    "Node condition DiskPressure=True",
+    "Pods evicted with reason Evicted, message: The node was low on resource: ephemeral-storage",
+    "Container logs lost after eviction",
+    "Image pull failures due to full disk"
+  ],
+  "root_cause": "Insufficient node disk size; container logs not rotated; unused images not garbage collected; large emptyDir volumes",
+  "workaround": "Cordon and drain affected node; increase node disk in launch template; manual docker/containerd image prune",
+  "permanent_fix": "Increase default node disk to 100GB+; enable log rotation (max-size 10m, max-file 3); configure kubelet imageGCHighThresholdPercent; set ephemeral-storage requests on pods",
+  "runbook_ref": "runbooks/rb-kedb-0010.md",
+  "runbook_type": "hybrid",
+  "auto_healing": {
+    "mechanism": "Node Problem Detector + cluster autoscaler replaces unhealthy nodes; automated image GC cron",
+    "tool": "NPD + cluster-autoscaler + DaemonSet cleanup job",
+    "status": "planned"
+  },
+  "related_jira": [],
+  "related_monitors": ["Node disk usage > 85%", "Pod evicted"],
+  "frequency": "Validate after data pull",
+  "status": "template",
+  "owner": "CloudOps SRE",
+  "last_reviewed": "2026-08-23",
+  "notes": "Review emptyDir usage in application Helm charts"
+}

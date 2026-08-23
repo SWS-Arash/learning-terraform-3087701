@@ -1,0 +1,28 @@
+{
+  "id": "KEDB-0001",
+  "title": "Datadog CPU alert flapping on idle pods",
+  "category": "MONITOR_NOISE",
+  "teams": ["Antuit CloudOps"],
+  "symptoms": [
+    "Datadog CPU utilization monitor fires Alert then OK within 1-5 minutes",
+    "PagerDuty pages on-call with no customer impact",
+    "Pod CPU usage shows brief spikes during garbage collection or health checks"
+  ],
+  "root_cause": "Monitor uses avg(last_1m) threshold without evaluation delay; normal JVM/Go GC spikes trigger false positives",
+  "workaround": "Acknowledge alert; verify pod is healthy via kubectl top and application health endpoint",
+  "permanent_fix": "Change query to avg(last_5m) > threshold AND min(count_over_time(...)) >= 3; add recovery threshold hysteresis; tag monitor with owner team",
+  "runbook_ref": "runbooks/rb-kedb-0001.md",
+  "runbook_type": "hybrid",
+  "auto_healing": {
+    "mechanism": "Datadog monitor auto-resolve + PagerDuty alert grouping suppresses repeat pages within 15min window",
+    "tool": "Datadog + PagerDuty",
+    "status": "planned"
+  },
+  "related_jira": [],
+  "related_monitors": ["CPU utilization > 80%"],
+  "frequency": "Validate after data pull — typical: 10-30 alerts/month per noisy monitor",
+  "status": "template",
+  "owner": "CloudOps SRE",
+  "last_reviewed": "2026-08-23",
+  "notes": "Run analyze_pain_points.py to identify top flapping monitors and map to this KEDB entry"
+}

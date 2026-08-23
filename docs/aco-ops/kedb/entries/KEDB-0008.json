@@ -1,0 +1,29 @@
+{
+  "id": "KEDB-0008",
+  "title": "Critical CVE blocking deployment pipeline",
+  "category": "SECURITY_VULN",
+  "teams": ["Antuit CloudOps"],
+  "symptoms": [
+    "CI/CD pipeline fails at image scan stage",
+    "Wiz/Prisma/Trivy reports critical CVE in base image or dependency",
+    "ArgoCD sync blocked by OPA/Gatekeeper policy",
+    "Production running vulnerable image while fix is in progress"
+  ],
+  "root_cause": "Outdated base image; transitive dependency CVE; no patch available yet; exception process not followed",
+  "workaround": "Assess exploitability; if not exploitable in context, request time-limited exception with compensating controls; upgrade base image or dependency",
+  "permanent_fix": "Weekly base image rebuilds; Dependabot/Renovate for dependency updates; defined CVE SLA (Critical 7d, High 30d); exception registry with expiry",
+  "runbook_ref": "runbooks/rb-kedb-0008.md",
+  "runbook_type": "manual",
+  "auto_healing": {
+    "mechanism": "Automated base image rebuild on CVE publish; auto-PR from Renovate for patchable deps",
+    "tool": "Renovate + Trivy + CI gate",
+    "status": "planned"
+  },
+  "related_jira": [],
+  "related_monitors": ["Critical CVE count > 0 in production"],
+  "frequency": "Validate after data pull",
+  "status": "template",
+  "owner": "CloudOps Security",
+  "last_reviewed": "2026-08-23",
+  "notes": "Maintain CVE exception registry with owner, expiry, and compensating controls"
+}
